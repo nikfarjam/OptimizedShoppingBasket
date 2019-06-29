@@ -1,5 +1,6 @@
 package com.mehdi.optimizedbasket.builder;
 
+import com.mehdi.optimizedbasket.factory.ClassFactory;
 import com.mehdi.optimizedbasket.model.Category;
 import com.mehdi.optimizedbasket.model.Item;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,6 +25,7 @@ class ItemBuilderTest {
 
     @BeforeEach
     void setUp() {
+        builder = ClassFactory.getInstance().createItemBuilder();
     }
 
     @Nested

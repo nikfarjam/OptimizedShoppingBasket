@@ -3,11 +3,13 @@ package com.mehdi.optimizedbasket.builder;
 import com.mehdi.optimizedbasket.factory.ClassFactory;
 import com.mehdi.optimizedbasket.model.Category;
 import com.mehdi.optimizedbasket.model.Item;
+import com.mehdi.optimizedbasket.model.ItemValueRange;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,11 +23,19 @@ class ItemBuilderTest {
 
     private static final int CATEGORIES_COUNT = 20;
     private static final int ITEM_COUNTS = 10;
+    private static ItemValueRange TEST_RANGE = new ItemValueRange()
+            .setMinPrice(BigDecimal.ONE)
+            .setMaxPrice(BigDecimal.valueOf(20))
+            .setMinShoppingCost(BigDecimal.valueOf(2))
+            .setMaxShoppingCost(BigDecimal.valueOf(5))
+            .setMinRate(1)
+            .setMaxRate(5);
+
     private ItemBuilder builder;
 
     @BeforeEach
     void setUp() {
-        builder = ClassFactory.getInstance().createItemBuilder();
+        builder = ClassFactory.getInstance().createItemBuilder(TEST_RANGE.getItemRange());
     }
 
     @Nested

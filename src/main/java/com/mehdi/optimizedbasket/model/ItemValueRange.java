@@ -71,7 +71,7 @@ public class ItemValueRange implements ItemRange {
         return this;
     }
 
-    ItemRange getItemRange(){
+    public ItemRange getItemRange(){
         return (ItemRange)this;
     }
 }

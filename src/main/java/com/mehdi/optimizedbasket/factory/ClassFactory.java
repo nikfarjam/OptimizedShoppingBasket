@@ -2,6 +2,7 @@ package com.mehdi.optimizedbasket.factory;
 
 import com.mehdi.optimizedbasket.builder.ItemBuilder;
 import com.mehdi.optimizedbasket.builder.ItemBuilderImpl;
+import com.mehdi.optimizedbasket.model.ItemRange;
 import com.mehdi.optimizedbasket.model.ItemValueRange;
 
 /**
@@ -26,8 +27,9 @@ public class ClassFactory {
         return ourInstance;
     }
 
-    public ItemBuilder createItemBuilder() {
+    public ItemBuilder createItemBuilder(ItemRange valueRange) {
         ItemBuilder builder = new ItemBuilderImpl();
+        builder.setItemRange(valueRange);
         return builder;
     }
 }

@@ -15,6 +15,7 @@ public class ItemValueRange implements ItemRange {
     private int maxRate;
 
     public ItemValueRange() {
+        super();
     }
 
     public BigDecimal getMinPrice() {
@@ -72,6 +73,6 @@ public class ItemValueRange implements ItemRange {
     }
 
     public ItemRange getItemRange() {
-        return (ItemRange) this;
+        return this;
     }
 }

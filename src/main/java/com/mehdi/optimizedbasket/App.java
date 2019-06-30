@@ -38,17 +38,22 @@ public class App {
         ReportGenerator report = ClassFactory.getInstance().getReportGenerator();
 
         List<Category> categories = builder.getCategoriesAndItems(20, 10);
+
+        logGeneratedData(categories);
+
+        List<Item> items = categories.stream()  // stream of categories
+                .map(Category::getItems)        // stream of list of items
+                .flatMap(Collection::stream)    // stream of all items
+                .collect(Collectors.toList());  // convert stream to list
+
+        Optional<Basket> result = picker.selectItems(items, totalCostLimit);
+        result.ifPresent(basket -> report.generate(basket, categories));
+    }
+
+    private static void logGeneratedData(List<Category> categories) {
         logger.info("Generated categories are:");
         for (Category category : categories) {
             logger.info(category);
         }
-
-        List<Item> items = categories.stream()
-                .map(Category::getItems)
-                .flatMap(Collection::stream)
-                .collect(Collectors.toList());
-
-        Optional<Basket> result = picker.selectItems(items, totalCostLimit);
-        result.ifPresent(basket -> report.generate(basket, categories));
     }
 }

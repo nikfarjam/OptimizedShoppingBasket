@@ -13,9 +13,9 @@ import com.mehdi.optimizedbasket.service.ReportGenerator;
  */
 public class ClassFactory {
 
-    public static String ITEM_PICKER_GREEDY = "ITEM_PICKER_GREEDY";
+    public static final String ITEM_PICKER_GREEDY = "ITEM_PICKER_GREEDY";
 
-    private static String LOCK = "LOCK";
+    private static final String LOCK = "LOCK";
     private static ClassFactory ourInstance = null;
 
     private ClassFactory() {

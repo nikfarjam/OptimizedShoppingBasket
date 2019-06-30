@@ -94,7 +94,7 @@ public class Item {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Item{");
+        final StringBuilder sb = new StringBuilder("Item{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", price=").append(price);

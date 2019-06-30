@@ -64,7 +64,7 @@ public class Category {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Category{");
+        final StringBuilder sb = new StringBuilder("Category{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", items=").append(items);

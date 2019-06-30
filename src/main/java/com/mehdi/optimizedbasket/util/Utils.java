@@ -13,7 +13,6 @@ public class Utils {
     }
 
     /**
-     *
      * @param c a collection
      * @return true if collection is null or empty
      */
@@ -22,13 +21,12 @@ public class Utils {
     }
 
     /**
-     *
      * @param num1
      * @param num2
      * @return true if both has exactly the same value
      */
     public static boolean isNumberEquals(BigDecimal num1, BigDecimal num2) {
-        if (num1 == null && num2 == null){
+        if (num1 == null && num2 == null) {
             return true;
         }
         if ((num1 == null && num2 != null) || (num2 == null && num1 != null)) {

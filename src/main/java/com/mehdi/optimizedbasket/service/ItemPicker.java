@@ -9,5 +9,6 @@ import java.util.Optional;
 public interface ItemPicker {
 
     BigDecimal calcItemPriority(Item item);
+
     Optional<Basket> selectItems(List<Item> items, BigDecimal priceLimit);
 }

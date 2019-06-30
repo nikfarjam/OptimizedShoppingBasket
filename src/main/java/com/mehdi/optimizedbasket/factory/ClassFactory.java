@@ -3,12 +3,15 @@ package com.mehdi.optimizedbasket.factory;
 import com.mehdi.optimizedbasket.builder.ItemBuilder;
 import com.mehdi.optimizedbasket.builder.ItemBuilderImpl;
 import com.mehdi.optimizedbasket.model.ItemRange;
-import com.mehdi.optimizedbasket.model.ItemValueRange;
+import com.mehdi.optimizedbasket.service.GreedyPickerImpl;
+import com.mehdi.optimizedbasket.service.ItemPicker;
 
 /**
  * A thread safe singleton Factory class in charge of creating classes
  */
 public class ClassFactory {
+
+    public static String ITEM_PICKER_GREEDY = "ITEM_PICKER_GREEDY";
 
     private static String LOCK = "LOCK";
     private static ClassFactory ourInstance = null;
@@ -31,5 +34,12 @@ public class ClassFactory {
         ItemBuilder builder = new ItemBuilderImpl();
         builder.setItemRange(valueRange);
         return builder;
+    }
+
+    public ItemPicker getItemPicker(String key) {
+        if (ITEM_PICKER_GREEDY.equals(key)) {
+            return new GreedyPickerImpl();
+        }
+        return null;
     }
 }

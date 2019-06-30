@@ -3,8 +3,10 @@ package com.mehdi.optimizedbasket.factory;
 import com.mehdi.optimizedbasket.builder.ItemBuilder;
 import com.mehdi.optimizedbasket.builder.ItemBuilderImpl;
 import com.mehdi.optimizedbasket.model.ItemRange;
+import com.mehdi.optimizedbasket.service.ConsoleReportGeneratorImpl;
 import com.mehdi.optimizedbasket.service.GreedyPickerImpl;
 import com.mehdi.optimizedbasket.service.ItemPicker;
+import com.mehdi.optimizedbasket.service.ReportGenerator;
 
 /**
  * A thread safe singleton Factory class in charge of creating classes
@@ -41,5 +43,9 @@ public class ClassFactory {
             return new GreedyPickerImpl();
         }
         return null;
+    }
+
+    public ReportGenerator getReportGenerator() {
+        return new ConsoleReportGeneratorImpl();
     }
 }

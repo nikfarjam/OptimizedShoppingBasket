@@ -15,18 +15,26 @@ public class GreedyPickerImpl implements ItemPicker {
 
     private static final Logger logger = LogManager.getLogger(GreedyPickerImpl.class);
 
+    /**
+     * Order items in descending order
+     */
     private Comparator<Item> sortDescByWeight = (i1, i2) -> {
         BigDecimal weight1 = calcItemPriority(i1);
         BigDecimal weight2 = calcItemPriority(i2);
         return weight2.compareTo(weight1);
     };
 
+    /**
+     * Sort items by higher rate and lower total cost
+     * then fill basket until it reaches total price limit
+     *
+     * @param items      list of items
+     * @param priceLimit total price limit
+     * @return a filled basket with items, having total rate and cost
+     */
     @Override
     public Optional<Basket> selectItems(List<Item> items, BigDecimal priceLimit) {
-        if (priceLimit == null || priceLimit.compareTo(BigDecimal.ZERO) == 0) {
-            return Optional.empty();
-        }
-        if (Utils.isEmptyCollection(items)) {
+        if (!isPriceLimitValid(priceLimit) || Utils.isEmptyCollection(items)) {
             return Optional.empty();
         }
         final Basket basket = new Basket(priceLimit);
@@ -40,6 +48,18 @@ public class GreedyPickerImpl implements ItemPicker {
         return Optional.of(basket);
     }
 
+    private boolean isPriceLimitValid(BigDecimal priceLimit) {
+        return priceLimit != null && priceLimit.compareTo(BigDecimal.ZERO) != 0;
+    }
+
+    /**
+     * Priorities items base on higher rate and lower total cost
+     * Item priority is a number calculated by this formula
+     * prating / (price + shopping cost)
+     *
+     * @param item given item
+     * @return Item priority
+     */
     @Override
     public BigDecimal calcItemPriority(Item item) {
         BigDecimal cost = item.getShippingCost().add(item.getPrice());

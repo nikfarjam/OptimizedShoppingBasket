@@ -16,14 +16,13 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static com.mehdi.optimizedbasket.factory.ClassFactory.ITEM_PICKER_GREEDY;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ItemPickerTest {
 
@@ -124,7 +123,7 @@ class ItemPickerTest {
 
         @Test
         @DisplayName("When items' cost not cover limit, all must be picked")
-        void fewItems(){
+        void fewItems() {
             Item item1 = new Item(1, "test1", BigDecimal.valueOf(3), BigDecimal.valueOf(2), 1, 10); //5
             Item item2 = new Item(2, "test2", BigDecimal.valueOf(1), BigDecimal.valueOf(1), 2, 10); //2
             Item item3 = new Item(3, "test3", BigDecimal.valueOf(3), BigDecimal.valueOf(4), 3, 10); //7
@@ -141,14 +140,14 @@ class ItemPickerTest {
             assertTrue(result.isPresent(), "Result must have value");
             Basket basket = result.get();
             assertThat("All items must be added, so sum rating is sum", basket.getSumRating(), is(15));
-            assertTrue(Utils.isNumberEquals(basket.getTotalCost(),BigDecimal.valueOf(20.5)),
+            assertTrue(Utils.isNumberEquals(basket.getTotalCost(), BigDecimal.valueOf(20.5)),
                     "All items must be added, so total cost is sum");
             assertThat("All items must be added", basket.getSelectedItems(), hasSize(items.size()));
         }
 
         @Test
         @DisplayName("Sample 1")
-        void sample1(){
+        void sample1() {
             Item item1 = new Item(1, "test1", BigDecimal.valueOf(3), BigDecimal.valueOf(2), 1, 10); //5
             Item item2 = new Item(2, "test2", BigDecimal.valueOf(1), BigDecimal.valueOf(1), 2, 10); //2
             Item item3 = new Item(3, "test3", BigDecimal.valueOf(3), BigDecimal.valueOf(4), 3, 10); //7
@@ -165,7 +164,7 @@ class ItemPickerTest {
             assertTrue(result.isPresent(), "Result must have value");
             Basket basket = result.get();
             assertThat("All items must be added, so sum rating is sum", basket.getSumRating(), is(14));
-            assertTrue(Utils.isNumberEquals(basket.getTotalCost(),BigDecimal.valueOf(15.5)),
+            assertTrue(Utils.isNumberEquals(basket.getTotalCost(), BigDecimal.valueOf(15.5)),
                     "All items must be added, so total cost is sum");
             assertThat("All items must be added", basket.getSelectedItems(), hasSize(4));
         }

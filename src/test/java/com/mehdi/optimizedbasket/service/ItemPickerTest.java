@@ -145,6 +145,30 @@ class ItemPickerTest {
                     "All items must be added, so total cost is sum");
             assertThat("All items must be added", basket.getSelectedItems(), hasSize(items.size()));
         }
+
+        @Test
+        @DisplayName("Sample 1")
+        void sample1(){
+            Item item1 = new Item(1, "test1", BigDecimal.valueOf(3), BigDecimal.valueOf(2), 1, 10); //5
+            Item item2 = new Item(2, "test2", BigDecimal.valueOf(1), BigDecimal.valueOf(1), 2, 10); //2
+            Item item3 = new Item(3, "test3", BigDecimal.valueOf(3), BigDecimal.valueOf(4), 3, 10); //7
+            Item item4 = new Item(4, "test4", BigDecimal.valueOf(1.5), BigDecimal.valueOf(2.5), 4, 10); //4
+            Item item5 = new Item(5, "test5", BigDecimal.valueOf(1.75), BigDecimal.valueOf(0.75), 5, 10); //2.5
+            List<Item> items = new ArrayList<>();
+            items.add(item1);
+            items.add(item2);
+            items.add(item3);
+            items.add(item4);
+            items.add(item5);
+
+            Optional<Basket> result = picker.selectItems(items, BigDecimal.valueOf(20));
+            assertTrue(result.isPresent(), "Result must have value");
+            Basket basket = result.get();
+            assertThat("All items must be added, so sum rating is sum", basket.getSumRating(), is(14));
+            assertTrue(Utils.isNumberEquals(basket.getTotalCost(),BigDecimal.valueOf(15.5)),
+                    "All items must be added, so total cost is sum");
+            assertThat("All items must be added", basket.getSelectedItems(), hasSize(4));
+        }
     }
 
 }

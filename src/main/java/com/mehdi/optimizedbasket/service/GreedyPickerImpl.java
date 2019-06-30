@@ -2,6 +2,8 @@ package com.mehdi.optimizedbasket.service;
 
 import com.mehdi.optimizedbasket.model.Item;
 import com.mehdi.optimizedbasket.util.Utils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -10,6 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class GreedyPickerImpl implements ItemPicker {
+
+    private static final Logger logger = LogManager.getLogger(GreedyPickerImpl.class);
 
     private Comparator<Item> sortDescByWeight = (i1, i2) -> {
         BigDecimal weight1 = calcItemPriority(i1);
@@ -31,7 +35,7 @@ public class GreedyPickerImpl implements ItemPicker {
                 .filter(i -> !basket.addItem(i))
                 .findFirst();
         if (overFlowItem.isPresent()) {
-            return Optional.of(basket);
+            logger.info("Basket is full");
         }
         return Optional.of(basket);
     }

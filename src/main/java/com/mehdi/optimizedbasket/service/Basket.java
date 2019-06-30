@@ -47,16 +47,6 @@ public class Basket {
         return true;
     }
 
-    public boolean removeItem(Item item) {
-        if (!selectedItems.containsKey(item.getId())) {
-            return false;
-        }
-        this.selectedItems.remove(item.getId());
-        totalCost = totalCost.subtract(item.getPrice()).subtract(item.getShippingCost());
-        sumRating -= item.getRating();
-        return true;
-    }
-
     public boolean isFull() {
         return Utils.isNumberEquals(totalCost, costLimit);
     }

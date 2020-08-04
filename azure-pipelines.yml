@@ -14,8 +14,10 @@ stages:
   jobs:
   - job: NodeInformation
     steps:
-      - script: echo Hello World
-        
+      - script: |
+          uname -a
+          mvn --version
+
 # steps:
 # - task: Maven@3
 #   inputs:

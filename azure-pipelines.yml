@@ -27,7 +27,7 @@ stages:
       - script: |
           uname -a
           mvn --version
-          ls /
+          env
           pwd
 
 # steps:

@@ -18,8 +18,7 @@ stages:
         inputs:
           versionSpec: "11"
           jdkArchitectureOption: x64
-          jdkSourceOption: LocalDirectory
-          jdkFile: "/builds/openjdk-11.0.2_linux-x64_bin.tar.gz"
+          jdkSourceOption: 'PreInstalled'
           jdkDestinationDirectory: '$(agent.toolsDirectory)/jdk11'
           cleanDestinationDirectory: true
 
@@ -28,6 +27,8 @@ stages:
       - script: |
           uname -a
           mvn --version
+          ls /
+          pwd
 
 # steps:
 # - task: Maven@3

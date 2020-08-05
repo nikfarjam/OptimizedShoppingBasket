@@ -16,7 +16,7 @@ stages:
     steps:
       - task: Bash@3
         env:
-          JAVA_HOME: JAVA_HOME_12_X64
+          JAVA_HOME: $(JAVA_HOME_12_X64)
 
   - job: NodeInformation
     steps:

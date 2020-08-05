@@ -12,15 +12,11 @@ pool:
 stages:
 - stage: Preparation
   jobs:
-  - job: InstallDependencies
+  - job: SetupEnvironment
     steps:
-      - task: JavaToolInstaller@0
-        inputs:
-          versionSpec: "11"
-          jdkArchitectureOption: x64
-          jdkSourceOption: 'PreInstalled'
-          jdkDestinationDirectory: '$(agent.toolsDirectory)/jdk11'
-          cleanDestinationDirectory: true
+      - task: Bash@3
+        env:
+          JAVA_HOME: JAVA_HOME_12_X64
 
   - job: NodeInformation
     steps:

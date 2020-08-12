@@ -18,23 +18,21 @@ stages:
         inputs:
           targetType: 'inline'
           script: export JAVA_HOME=$JAVA_HOME_12_X64
+      
 
   - job: NodeInformation
     steps:
-      - script: |
-          uname -a
-          mvn --version
-          env
-          pwd
+      - script: mvn --version
 
-# steps:
-# - task: Maven@3
-#   inputs:
-#     mavenPomFile: 'pom.xml'
-#     mavenOptions: '-Xmx3072m'
-#     javaHomeOption: 'JDKVersion'
-#     jdkVersionOption: '1.8'
-#     jdkArchitectureOption: 'x64'
-#     publishJUnitResults: true
-#     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-#     goals: 'test'
+  - job: RunTest
+    steps:
+      - task: Maven@3
+        inputs:
+          mavenPomFile: 'pom.xml'
+          mavenOptions: '-Xmx3072m'
+          javaHomeOption: 'JDKVersion'
+          jdkVersionOption: '1.9'
+          jdkArchitectureOption: 'x64'
+          publishJUnitResults: true
+          testResultsFiles: '**/surefire-reports/TEST-*.xml'
+          goals: 'test'

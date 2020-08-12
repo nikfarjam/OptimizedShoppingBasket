@@ -17,7 +17,7 @@ stages:
       - task: Bash@3
         inputs:
           targetType: 'inline'
-          script: echo $JAVA_HOME
+          script: export JAVA_HOME = $JAVA_HOME_12_X64
 
   - job: NodeInformation
     steps:
